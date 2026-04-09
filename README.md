@@ -4,7 +4,7 @@ xlsxwriter 를 이용하여 엑셀을 보다 쉽게 작성할 수 있도록 도�
 
 ### 설치
 ```bash
-pip install excel-convertor
+pip install simple-excel
 ```
 
 ### 사용법
@@ -15,64 +15,64 @@ pip install excel-convertor
 #### 1. 가장 간단한 사용법
 ```python
 # 기본 사용법
-convertor = ExcelConvertor(save_to="test").open()
-convertor.header = {"이름": "이름", "휴대폰": "휴 대 폰", "가입일": "가입일"}
-convertor.cell_styles = {"휴대폰": {"num_format": "@"}}
-convertor.cell_comments = {"휴대폰": "- 를 제거한 후 입력해주세요."}
+simple_excel = SimpleExcel(save_to="test").open()
+simple_excel.header = {"이름": "이름", "휴대폰": "휴 대 폰", "가입일": "가입일"}
+simple_excel.cell_styles = {"휴대폰": {"num_format": "@"}}
+simple_excel.cell_comments = {"휴대폰": "- 를 제거한 후 입력해주세요."}
 
 excel_body = list()
 for x in range(1, 100):
     excel_body.append({"이름": f"홍길동{x}", "휴대폰": f"0101234567{x:02d}", "가입일": "2025-01-01"})
-convertor.body = excel_body
-convertor.write_sheet()
-convertor.close()
+simple_excel.body = excel_body
+simple_excel.write_sheet()
+simple_excel.close()
 
 # with 구문 사용법 (close 생략 가능)
-with ExcelConvertor(save_to="test") as convertor:
-    convertor.header = {"이름": "이름", "휴대폰": "휴 대 폰", "가입일": "가입일"}
-    convertor.cell_styles = {"휴대폰": {"num_format": "@"}}
-    convertor.cell_comments = {"휴대폰": "- 를 제거한 후 입력해주세요."}
+with SimpleExcel(save_to="test") as simple_excel:
+    simple_excel.header = {"이름": "이름", "휴대폰": "휴 대 폰", "가입일": "가입일"}
+    simple_excel.cell_styles = {"휴대폰": {"num_format": "@"}}
+    simple_excel.cell_comments = {"휴대폰": "- 를 제거한 후 입력해주세요."}
     
     excel_body = list()
     for x in range(1, 100):
         excel_body.append({"이름": f"홍길동{x}", "휴대폰": f"0101234567{x:02d}", "가입일": "2025-01-01"})
-    convertor.body = excel_body
-    convertor.write_sheet("sheet name")
+    simple_excel.body = excel_body
+    simple_excel.write_sheet("sheet name")
 ```
 
 ##### 2. 시트별로 데이터를 나누어 작성
 ```python
-with ExcelConvertor(save_to="test") as convertor:
-    convertor.header = {"이름": "이름", "휴대폰": "휴 대 폰", "가입일": "가입일"}
-    convertor.cell_styles = {"휴대폰": {"num_format": "@"}}
-    convertor.cell_comments = {"휴대폰": "- 를 제거한 후 입력해주세요."}
+with SimpleExcel(save_to="test") as simple_excel:
+    simple_excel.header = {"이름": "이름", "휴대폰": "휴 대 폰", "가입일": "가입일"}
+    simple_excel.cell_styles = {"휴대폰": {"num_format": "@"}}
+    simple_excel.cell_comments = {"휴대폰": "- 를 제거한 후 입력해주세요."}
     
     excel_body = list()
     for x in range(1, 100):
         excel_body.append({"이름": f"홍길동{x}", "가입일": "2025-01-01"})
-    convertor.body = excel_body
-    convertor.write_sheet("by name")
+    simple_excel.body = excel_body
+    simple_excel.write_sheet("by name")
     
     excel_body = list()
     for x in range(1, 100):
         excel_body.append({"휴대폰": f"1012345{x}", "가입일": "2025-01-01"})
-    convertor.body = excel_body
-    convertor.write_sheet("by tel")
+    simple_excel.body = excel_body
+    simple_excel.write_sheet("by tel")
 ```
 
 #### 3. 버퍼에 저장
 ```python
 buffer = BytesIO()
-with ExcelConvertor(save_to=buffer) as convertor: 
-    convertor.header = {"이름": "이름", "휴대폰": "휴 대 폰", "가입일": "가입일"}
-    convertor.cell_styles = {"휴대폰": {"num_format": "@"}}
-    convertor.cell_comments = {"휴대폰": "- 를 제거한 후 입력해주세요."}
+with SimpleExcel(save_to=buffer) as simple_excel: 
+    simple_excel.header = {"이름": "이름", "휴대폰": "휴 대 폰", "가입일": "가입일"}
+    simple_excel.cell_styles = {"휴대폰": {"num_format": "@"}}
+    simple_excel.cell_comments = {"휴대폰": "- 를 제거한 후 입력해주세요."}
     
     excel_body = list()
     for x in range(1, 100):
         excel_body.append({"이름": f"홍길동{x}", "휴대폰": f"0101234567{x:02d}", "가입일": "2025-01-01"})
-    convertor.body = excel_body
-    convertor.write_sheet()
+    simple_excel.body = excel_body
+    simple_excel.write_sheet()
 
 # 다운로드 응답
 response = HttpResponse(

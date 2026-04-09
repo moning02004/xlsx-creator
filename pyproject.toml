@@ -3,11 +3,10 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "excel-convertor"
-version = "1.4.5"
-description = "엑셀 생성기 from dictionary"
+name = "simple-excel"
+version = "1.4.6"
 authors = [
-    { name = "Yu Jeonghoon", email = "jeonghoon@jnghn.xyz" }
+    { name = "Yu Jeonghoon", email = "moning02004@naver.com" }
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
@@ -15,11 +14,10 @@ requires-python = ">=3.8"
 dependencies = [
     "XlsxWriter>=3.0.0"
 ]
-keywords = ["excel", "xlsx", "dict", "json", "python"]
 
 [project.urls]
-"Homepage" = "https://github.com/moning02004/excel-convertor"
-"Bug Tracker" = "https://github.com/moning02004/excel-convertor/issues"
+"Homepage" = "https://github.com/moning02004/simple-excel"
+"Bug Tracker" = "https://github.com/moning02004/simple-excel/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

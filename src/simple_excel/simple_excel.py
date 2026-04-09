@@ -17,7 +17,7 @@ def get_display_width(text):
     return sum(width)
 
 
-class ExcelConvertor:
+class SimpleExcel:
     __header_style = {
         "bold": False,
         "font_name": "Arial",
